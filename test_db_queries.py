@@ -133,7 +133,7 @@ with db_api.CONTEXT_WRITER.using(test_db.context):
     ports_with_ip_address = test_db.context.session.query(
         models_v2.Port).filter(and_(
         models_v2.IPAllocation.port_id == models_v2.Port.id,
-        models_v2.IPAllocation.subnet_id == subnet_id)).all()
+        models_v2.IPAllocation.network_id == network.id)).all()
     ports_with_ip_address_ids = [p.id for p in ports_with_ip_address]
     assert port2.id in ports_with_ip_address_ids
 
